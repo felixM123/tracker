@@ -6,25 +6,45 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {LoginPage} from '../pages/login/login';
+import { UsuarioProvider } from '../providers/usuario/usuario';
+//firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+export const firebaseConfig={
+  apiKey: "AIzaSyCQ-s45mGkxAJaPqlyIovcknsk6QnayqJ8",
+    authDomain: "tracker-taxis-f4864.firebaseapp.com",
+    databaseURL: "https://tracker-taxis-f4864.firebaseio.com",
+    projectId: "tracker-taxis-f4864",
+    storageBucket: "tracker-taxis-f4864.appspot.com",
+    messagingSenderId: "137120172961"
+  };
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+     AngularFireModule.initializeApp(firebaseConfig),
+      AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UsuarioProvider
   ]
 })
 export class AppModule {}
